@@ -1,0 +1,109 @@
+/* Body */
+body {
+    position:absolute;
+    display:block;
+    top:0; bottom:0;
+    left:0; right:0;
+    font-family: georgia, 'times new roman', serif;
+    background: #000000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+#wrap {
+    box-shadow: 0px 3px 15px white;
+    margin:0 2%;
+}
+
+/* Containers */
+#topcontainer {
+    height:10px;
+    background: #000000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+#container, #container2 {
+    background: white;
+    font-family: 'trebuchet ms', verdana, tahoma, 'sans serif';
+}
+
+/* Banner */
+#banner {
+    text-align: left;
+    background: #000000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+#banner h1 {
+    margin: 0;
+    padding: 30px 5px 30px 20px;
+}
+
+#banner h1 a {
+    color: white;
+    text-decoration: none;   
+
+}
+
+/* Left Column */
+#left {
+    float: left;
+    width: 190px;
+    padding-left:0px;
+}
+
+/* main content area */
+#content {
+    padding-top: 1em;
+    margin: 0 2em 0 220px;
+}
+
+/* left nav */
+#nav ul {
+    width: 100%;
+    margin:0;
+    padding:0;
+    margin-top:30px;
+    font-family:'trebuchet ms', verdana, tahoma, 'sans serif';
+}
+
+#nav li {
+    list-style:none;
+    height:45px;
+    background: white no-repeat -40px 44px;
+}
+
+#nav ul li a {
+    color:black;
+    text-decoration:none;
+    padding-left:20px;
+    line-height:45px;
+    display:block;
+    height:45px;
+}
+
+#nav ul li a:hover {
+    color:whitesmoke;
+    text-decoration:underline;
+    background: #000000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+/* Footer */
+#footer {
+    clear: both;
+    padding: 2em 0;
+    height:80px;
+    color:white;
+    text-align: center;
+    background: #000000 url('https://image.ibb.co/mjnygo/stars.png') repeat top center;
+}
+
+button, input {
+    background-color: white; 
+    border-radius: 25px;
+    color: black;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family:'trebuchet ms', verdana, tahoma, 'sans serif';
+}
+
+a{
+    text-decoration: none;
+    color: whitesmoke;
+}
