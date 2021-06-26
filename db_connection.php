@@ -1,5 +1,5 @@
 <?php
-	//This is the Database Connection File. We Will include this file whenever we need to do database Operations.
+	//This is the MYSQL Database Connection File. We Will include this file whenever we need to do database Operations.
 	
 	/*Create 'accounts' Table with Following Attribute & Column Name.
 		CREATE TABLE accounts (
@@ -12,7 +12,7 @@
 		);
 	*/
 
-	// Below we are setting up our connection to the server. 
+	// Change the Value Accroding to your MYSQL Configuration. 
 	$db_URL = "localhost";
 	$db_username = "root";
 	$db_password = "";
