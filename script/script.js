@@ -1,9 +1,8 @@
 function validateEmail()  {  
-  var x=document.subscribe.email_id.value;  
-  var atposition=x.indexOf("@");  
-  var dotposition=x.lastIndexOf(".");  
-  if (atposition<1 || dotposition<atposition+2 || dotposition+2>=x.length) {  
-    alert("Please enter a valid e-mail address");  
-    return false;  
+  var x=document.subscribe.email_id.value;
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if(!re.test(String(x).toLowerCase())){
+    alert("Please enter a valid e-mail address");
+    return false;
   }  
 }
