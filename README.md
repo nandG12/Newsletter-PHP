@@ -1,68 +1,33 @@
-# php-starter
+# Comic-World NewsLetter in PHP
+A Simple PHP application that accepts a visitor’s email address and emails them random XKCD comics every speicified time interval.
 
-This is a Github [template repo](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-template-repository) with just a readme file that you are reading right now and a magical `.github` folder which contains [Github Actions](https://github.com/features/actions) that automatically check your PHP codes against some common mistakes.
+## Getting Started
+This is an example of how you may give instructions on setting up your project locally. To get a local copy up and running follow these simple example steps.
 
-This starter repo does NOT check complete [WordPress Coding Standards](https://make.wordpress.org/core/handbook/best-practices/coding-standards/). For that you can try [wp-starter](https://github.com/rtlearn/wp-starter).
+### Requirment
+This is an example of how to list things you need to use the software and how to install them.
+1. Install [XAMPP](https://www.apachefriends.org/download.html) or [WAMP](https://www.wampserver.com/en/#download-wrapper) Server Or You can Install separately any WebServer Or Database.
+1. WebServer - [Apache](https://httpd.apache.org/download.cgi) or [NGINX](http://nginx.org/en/download.html)
+1. Database - [MySQL](https://www.mysql.com/downloads/) or Any Relational Database
 
-As you are here, you are most likely a student who is working on a PHP programming challenge as part of [rtCamp's Campus hiring](https://learn.rtcamp.com/campus/).
+### Installation
+1. Download project ZIP from [HERE](https://github.com/rtlearn/php-nandG12/archive/refs/heads/master.zip) or you can clone the repo using below Command.
+   ```
+   git clone https://github.com/rtlearn/php-nandG12.git
+   ```
+1. You need to modified below two files.
+   1. include/db_connection.php
+      - Read the Comment in that File. Create Database as per comment & Add the DataBase URL & Credentials in file. 
+   1. include/mail_config.php
+      - Change the SMTP Configuration as per your mail provider & Add the Email Credentials in file.
 
-In that case you must (generate a Github Classroom Private Repo using this special link)(https://classroom.github.com/a/EX2nMnPK).
+1. Web-Page is available now, Hit the published/Loclhost URL in Browser.
 
-You can find details about assignment here — https://learn.rtcamp.com/campus/php-assignments/
+## Features
+- User Can Read Random Comic Without Subscribe.
+- For the News Letter User Need to Verify their Email-ID first.
+- News Letter Mail Script Send the Mail to all user that are verified & Subscribe to every specified time interval (Like 5 or 10 Min).
+- To Verify, Subscribe or Unsubscibe Specified Token Created & Send along with the mail.  
 
-## ⚠️ Important Guidelines ⚠️
-
-Please read following carefully. If you miss any of below, rtCamp won't be able evalaute your assignment further.
-
-### 1. README.md file
-
-If you are reading this line in [your private repo](https://classroom.github.com/a/EX2nMnPK), then please replace content of this README.md file with your project details. If you do not do this, your submission will NOT be considered.
-
-### 2. `.github` folder
-
-Please Do NOT delete `.github` folder. The folder has codes that starts automated code review.
-One way to ensure that you do not delete this folder accidentally is to avoid `git push --force`.
-
-### 3. `phpcs.xml` file
-
-Please Do NOT delete `.phpcs.xml` file. The file tells automated system to do less stringent review of your code. If you delete that file, the automated system will do in-depth code review.
-
-### 4. `feedback` branch
-
-Please do NOT delete `feedback`branch. The codes in `.github` folder works on `feedback` git branch.
-
-### 5. Pull Requests
-
-Please do NOT merge any pull request on your repo. Pull-requests are automatically created to provide you inline feedback during code-review.
-
-### 6. Live Demo Link
-
-Each PHP web-development assignment requires a live demo. Please use [your private Github repo's](https://classroom.github.com/a/EX2nMnPK). website field to specify your live demo URL.
-Also, include the same live demo URL in your Readme.md content.
-
-### 7. Watch out for common mistakes
-
-Please check the entire section added below to avoid common mistakes. They are serious and lead to rejection.
-
-### 8. Readme.md reminder
-
-After you are done reading this, please replace content of this README.md with your project details.
-
-## Common Mistakes / PHP Errors
-
-1. Beware of SQL injection vulnerabilities. See [BobbyTables.com](https://bobby-tables.com/) and [BobbyTables.com/php](https://bobby-tables.com/php). (Sanitize input.) See `filter_input()` or MySQL sanitize strings or `prepare()` & `bind()` values.
-2. Beware of Cross-Site-Scripting vulnerabilities (XSS). (Escape output and validate input). This means don't `echo` or `print` anything that might come from `$_POST` or `$_GET` (user input) without first stripping tags or sanitizing the value.
-3. Validate any email subscribe and unsubscribe actions with a verification token.
-4. Any Cron scripts or SQL dumps should be stored in non-public directories (outside of web root).
-5. Don't commit database credentials to the repository. Use examples. Use a configuration file for common / repeating settings such as DB credentials, email credentials, or "From" addresses.
-6. Use `__DIR__`, `basename()`, or both when using `require` or `include`. Starting from current directory scans all folders in `include_path`.
-7. `require` and `include` are language constructs, not functions. Don't use parenthesis.
-8. Don't hard-code the server address or protocol. See `$_SERVER`.
-9. Use single-quotes if not parsing variables in strings in PHP.
-10. Be mindful of spelling and grammar for any message output.
-
-## Screenshots
-
-Github repos' website field to enter your live demo URL.
-
-![rtlearn_php-starter__Starter_repo_for_PHP_assignments](https://user-images.githubusercontent.com/4115/118948676-200e0000-b976-11eb-9425-7db122da29e8.jpg)
+## Live Demo
+Visit the [Comic-world](https://comic-world.herokuapp.com/)
