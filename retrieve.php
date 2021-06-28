@@ -1,5 +1,5 @@
 <?php
-	header( "refresh:15;url=index.php" );
+	header('refresh:15; url=index.php');
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +38,12 @@
                 <p>Thank you for your interest!</p>
                 <?php
                 	}
+                	elseif($_GET['retrieve'] == 'asubscribed'){
+                ?>
+                <h1>You Have Already Subscribed.</h1>
+                <p>Thank you for your interest!</p>
+                <?php
+                	}
                 	elseif($_GET['retrieve'] == 'unsubscribed'){
                 ?>
                 <h1>Sorry to see you go.</h1>
@@ -50,11 +56,19 @@
                 ?>
                 <h1>Thanks for being awesome!</h1>
                 <p>You've successfully verified your email. Enjoy the Comics!!</p>
+			  	<?php
+                	}
+                	elseif($_GET['retrieve'] == 'vfail'){
+                ?>
+                <h1>Looks Like You haven't verified your account.</h1>
+                <p>Plase Verified your email first.</p>
 
                 <?php
                 	}
                 	else{
-                		header('Location: index.php');
+                ?>
+                <h1>Something went wrong.</h1>
+               	<?php
                 	}
                 ?>
                 <p align="right">You will be Redirecting to the Home Page</p>
@@ -65,7 +79,6 @@
 
 			<div id="footer">
 				<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/2.5/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/" target="_black"><i>Creative Commons Attribution-NonCommercial 2.5 Generic License</i></a>.</p>
-
 			</div>
 		</div>
 	</div>
