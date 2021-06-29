@@ -4,13 +4,15 @@
     include './mail_config.php';
 
 	//Fetch the Current URL
-	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
-		$address = "https://";   
-	else  
+	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){  
+		$address = "https://";
+	}
+	else{  
 		$address = "http://";
+	}
 
 	// Append the host(domain name, ip) to the URL.   
-	$address .= $_SERVER['SERVER_NAME'];
+	$address .= isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : NULL;
 
 	//Check All Fields are Enter & Validate the Data
 	if(isset($_POST['email_id'])) {
@@ -101,8 +103,9 @@
         	//We are using the Current time stamp & Username to Generate the Verification Key
         	$vkey = md5(time().$email);
 
-        	//Random Key Generated Using s-Seconds, i-Minutes, H-24-hour format of an hour, d-The day of the month, N-The ISO-8601 numeric representation of a day 
-        	$random_id = date('siHdN', $_SERVER['REQUEST_TIME']);
+        	//Random Key Generated Using s-Seconds, i-Minutes, H-24-hour format of an hour, d-The day of the month, N-The ISO-8601 numeric representation of a day
+        	$server_time = isset($_SERVER['REQUEST_TIME']) ? $_SERVER['REQUEST_TIME'] : time();
+        	$random_id = date('siHdN', $server_time);
 
         	//Insert the data into the Database
         	$insert_sql = "INSERT INTO accounts(email, verification_key, random_id) VALUES('$email', '$vkey', '$random_id')";
