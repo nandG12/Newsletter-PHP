@@ -1,7 +1,7 @@
 <?php
 $idpass_error=false;
 if(defined('STDIN')){ //For Command Line
-    if(isset($argv[1]) and isset($argv[2])){
+    if(isset($argv[1]) && isset($argv[2])){
         $id = $argv[1];
         $password = $argv[2];
 
@@ -14,15 +14,17 @@ if(defined('STDIN')){ //For Command Line
     }
 } 
 else{ //For Web browser
-    $id = $_GET['id'];
-    $password = $_GET['pwd'];
+    $id = isset($_GET['id']) ? $_GET['id'] : NULL;
+    $password = isset($_GET['pwd']) ? $_GET['pwd'] : NULL;
 
     //Host Name & Location
-    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on')   
+    if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){
         $address = "https://";   
-    else  
+    }
+    else{  
         $address = "http://";
-    $address .= $_SERVER['SERVER_NAME'];
+    }
+    $address .= isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : NULL;
 
 }
 if(isset($id) && isset($password))
