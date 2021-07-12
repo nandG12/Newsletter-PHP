@@ -1,6 +1,6 @@
 <?php 
 	//Import the PHP Mailer Library
-	require $_SERVER['DOCUMENT_ROOT'].'/lib/phpmailer/PHPMailerAutoload.php';
+	require dirname(__DIR__, 1).'/lib/phpmailer/PHPMailerAutoload.php';
 
 	$mail = new PHPMailer;
 	$mail->isSMTP();
