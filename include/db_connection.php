@@ -13,10 +13,10 @@
 	*/
 
 	// Change the Value Accroding to your MYSQL Configuration. Below is an Simple Example.
-	$db_URL = "localhost";
-	$db_username = "root";
-	$db_password = "";
-	$db_databaseName = "comic-world";
+	$db_URL = 'localhost';
+	$db_username = 'root';
+	$db_password = '';
+	$db_databaseName = 'comic-world';
 
 	//Connecting
 	$db_connection = mysqli_connect($db_URL, $db_username, $db_password, $db_databaseName);

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Comic World</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
-	<script type="text/javascript" src="./script/script.js"></script>
+	<!--script type="text/javascript" src="./script/script.js"></script-->
 </head>
 <body>
 	<div id="wrap">
@@ -37,8 +37,8 @@
 			</div>
 
 			<div id="footer">
-				<form name="subscribe" action="./include/subscribe_check.php" method="POST" onsubmit="return validateEmail();">
-					<input type="text" name="email_id" placeholder="Enter Your Email ID" required>&nbsp;&nbsp;
+				<form name="subscribe" action="./include/subscribe_check.php" method="POST">
+					<input type="email" name="email_id" placeholder="Enter Your Email ID" required>&nbsp;&nbsp;
 					<button type="submit" name="submit"> Subscribe </button>
 				</form>
 				<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/2.5/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/" target="_black"><i>Creative Commons Attribution-NonCommercial 2.5 Generic License</i></a>.</p>

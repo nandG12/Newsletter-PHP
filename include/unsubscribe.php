@@ -2,12 +2,22 @@
 	//Check if Verification, Email & Random Key Added in URL or NOT
 	if(isset($_GET['rid']) && isset($_GET['eid']) && isset($_GET['vid']) && $_GET['rid']!= NULL && $_GET['eid']!= NULL && $_GET['vid']!= NULL ) {
 
-		$rid = $_GET['rid'];
-		$eid = $_GET['eid'];
-		$vid = $_GET['vid'];	
+		//Function to Validate the Data in PHP Again
+		function validate($data){
+			$data = trim($data);
+			$data = htmlspecialchars($data);
+			return $data;
+		}
 
+		$rid = validate($_GET['rid']);
+		$eid = validate($_GET['eid']);
+		$vid = validate($_GET['vid']);
+
+		/*Sanitize the Data*/
+		$rid = mysqli_real_escape_string($db_connection, $rid);	
+	
 		//Import DB Connection
-		include "./db_connection.php";
+		include __DIR__.'/db_connection.php';
 
 		//Fetch the Email ID From that Account using vkey
 		$verify_select_sql = "SELECT email,verified,verification_key FROM accounts WHERE random_id = '$rid' LIMIT 1";
@@ -25,26 +35,26 @@
 				$result_of_verification_update = mysqli_query($db_connection, $verification_update_sql);
 
 				if ($result_of_verification_update) {
-					header("Location: ../retrieve.php?retrieve=unsubscribed");
+					header('Location: ../retrieve.php?retrieve=unsubscribed');
 					exit();
 				}
 				else{
-					header("Location: ../retrieve.php?retrieve=fail");
+					header('Location: ../retrieve.php?retrieve=fail');
 					exit();
 				}
 			}//If Email or Verification Key Doesn't Match
 			else{
-				header("Location: ../retrieve.php?retrieve=fail");
+				header('Location: ../retrieve.php?retrieve=fail');
 				exit();
 			}
 		}//If Email ID Already Verified
 		else{
-			header("Location: ../retrieve.php?retrieve=fail");
+			header('Location: ../retrieve.php?retrieve=fail');
 			exit();
 		}
 	}//If Variable is not set properly in URL then Redirect to login page with 
 	else{
-		header("Location: ../retrieve.php?retrieve=fail");
+		header('Location: ../retrieve.php?retrieve=fail');
 		exit();
 	}
 ?>

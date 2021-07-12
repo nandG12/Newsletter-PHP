@@ -6,7 +6,7 @@ if(defined('STDIN')){ //For Command Line
         $password = $argv[2];
 
         //You need to manually Change this Host Name & Location If you running the Script From Command Line
-        $address = "https://xyz.xyz";
+        $address = 'https://xyz.xyz';
     }
     else{
         $idpass_error=true;
@@ -37,11 +37,12 @@ if(isset($id) && isset($password))
     if($id=='test' && $password=='password'){ //This is just an example of ID & Password. Change it.
     
         //Include the DB Connection File & Mail Config 
-        include './db_connection.php';
-        include './mail_config.php';
+        include __DIR__.'/db_connection.php';
+        include __DIR__.'/mail_config.php';
         
         function random_comic_url(){
-                $random_comic = rand(0,2478);
+                $url ='https://c.xkcd.com/random/comic/';
+                $random_comic = rtrim(explode('.com/',get_headers($url)[07])[01], '/');
                 $json = file_get_contents("https://xkcd.com/$random_comic/info.0.json");
                 $data = json_decode($json);
 
@@ -55,7 +56,7 @@ if(isset($id) && isset($password))
                 $rel_date=date_format($date,'l, F jS, Y');
 
                 //Store Value in Array
-                $comic_data = array("URL"=> $data->img, "title"=> $data->title, "rel_date"=>$rel_date ,"alt_text"=> $data->alt, "num"=>$data->num, "attachment_name"=> parse_url($data->img, PHP_URL_PATH));
+                $comic_data = array('URL'=> $data->img, 'title'=> $data->title, 'rel_date'=>$rel_date ,'alt_text'=> $data->alt, 'num'=>$data->num, 'attachment_name'=> parse_url($data->img, PHP_URL_PATH));
                 return $comic_data; 
         }
 

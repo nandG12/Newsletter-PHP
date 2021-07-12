@@ -1,7 +1,7 @@
 <?php
 	//Import DB Connection	& PHP Mailer Confige
-	include './db_connection.php';
-    include './mail_config.php';
+	include __DIR__.'/db_connection.php';
+    include __DIR__.'/mail_config.php';
 
 	//Fetch the Current URL
 	if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){  
@@ -37,7 +37,7 @@
 			$resend_data = mysqli_fetch_assoc($result_of_select);
 
 			if($resend_data['subscribed'] == 1 && $resend_data['verified'] == 1){
-	        	header("Location: ../retrieve.php?retrieve=asubscribed");
+	        	header('Location: ../retrieve.php?retrieve=asubscribed');
 	        	exit();
 			}
 			else {
@@ -49,7 +49,7 @@
 		        $mail->ClearAllRecipients();
 		        $mail->addAddress($email);
 		        $mail->isHTML(true);
-		        $mail->Subject= "Resend Verification Link : Comic World";
+		        $mail->Subject= 'Resend Verification Link : Comic World';
         		$mail_body = <<<EOD
 					<!DOCTYPE html>
 					<html>
@@ -93,7 +93,7 @@
 				$mail->Body=$mail_body;
 		        $mail->send();
         		//Redirect to the Sign-UP Page with Success Message
-        		header("Location: ../retrieve.php");
+        		header('Location: ../retrieve.php');
 	         	exit();
 	        }
         }
@@ -120,7 +120,7 @@
 		        $mail->ClearAllRecipients();
 		        $mail->addAddress($email);
 		        $mail->isHTML(true);
-		        $mail->Subject= "Email Verification : Comic World";
+		        $mail->Subject= 'Email Verification : Comic World';
         		$mail_body = <<<EOD
 					<!DOCTYPE html>
 					<html>
@@ -165,18 +165,18 @@
 		        $mail->send();
         		
         		//Redirect to the Sign-UP Page with Success Message
-        		header("Location: ../retrieve.php");
+        		header('Location: ../retrieve.php');
 	         	exit();
         	}
         	else{
         		//If Something goes wrong while insert into DB
-        		header("Location: ../retrieve.php?retrieve=vfail");
+        		header('Location: ../retrieve.php?retrieve=vfail');
 	         	exit();
         	}
         }
 	}
 	else{
-		header("Location: ../index.php");
+		header('Location: ../index.php');
 		exit();
 	}
 ?>

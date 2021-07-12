@@ -61,7 +61,7 @@
                 	elseif($_GET['retrieve'] == 'vfail'){
                 ?>
                 <h1>Looks Like You haven't verified your account.</h1>
-                <p>Plase Verified your email first.</p>
+                <p>Plase verify your email first.</p>
 
                 <?php
                 	}

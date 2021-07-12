@@ -1,11 +1,13 @@
 <?php
-		function random_comic_url(){
-            $random_comic = rand(0,2478);
+		function random_comic_url(){            
+            $url ='https://c.xkcd.com/random/comic/';
+			$random_comic = rtrim(explode('.com/',get_headers($url)[07])[01], '/');
+
             $json = file_get_contents("https://xkcd.com/$random_comic/info.0.json");
             $data = json_decode($json);
 
             //Store Value in Array
-            $comic_data = array("URL"=> $data->img, "title"=> $data->title, "alt_text"=> $data->alt, "num"=>$data->num, "attachment_name"=> parse_url($data->img, PHP_URL_PATH));
+            $comic_data = array('URL'=> $data->img, 'title'=> $data->title, 'alt_text'=> $data->alt, 'num'=>$data->num, 'attachment_name'=> parse_url($data->img, PHP_URL_PATH));
             return $comic_data; 
     	}
 
@@ -18,7 +20,7 @@
 	<meta charset="utf-8">
 	<title>Random Comic Book</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css" />
-	<script type="text/javascript" src="./script/script.js"></script>
+	<!--script type="text/javascript" src="./script/script.js"></script-->
 </head>
 <body>
 	<div id="wrap">
@@ -52,8 +54,8 @@
 			</div>
 
 			<div id="footer">
-				<form name="subscribe" action="./include/subscribe_check.php" method="POST" onsubmit="return validateEmail();">
-					<input type="text" name="email_id" placeholder="Enter Your Email ID" required>&nbsp;&nbsp;
+				<form name="subscribe" action="./include/subscribe_check.php" method="POST">
+					<input type="email" name="email_id" placeholder="Enter Your Email ID" required>&nbsp;&nbsp;
 					<button type="submit" name="submit"> Subscribe </button>
 				</form>
 				<p><a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/2.5/80x15.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">Creative Commons Attribution-NonCommercial 2.5 Generic License</a>.</p>
