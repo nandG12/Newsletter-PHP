@@ -88,7 +88,7 @@ if(isset($id) && isset($password))
                 $to = $row['email'];
 
                 //Create Mail With Inbuilt Mail Function
-                $subject = "Comic : " . $comic_data["title"];;
+                $subject = "Comic : " . $comic_data["title"];
                 $file = $comic_data['file_name']; 
                 
                 $mail_body = <<<EOD
