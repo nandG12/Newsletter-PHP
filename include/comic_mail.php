@@ -55,8 +55,16 @@ if(isset($id) && isset($password))
                 $date=date_create($release_date);
                 $rel_date=date_format($date,'l, F jS, Y');
 
+                //Save File
+                if(file_put_contents( basename($data->img),file_get_contents($data->img))) {
+                    echo 'File downloaded successfully';
+                }
+                else {
+                    echo 'File downloading failed.';
+                }
+
                 //Store Value in Array
-                $comic_data = array('URL'=> $data->img, 'title'=> $data->title, 'rel_date'=>$rel_date ,'alt_text'=> $data->alt, 'num'=>$data->num, 'attachment_name'=> parse_url($data->img, PHP_URL_PATH));
+                $comic_data = array('URL'=> $data->img, 'title'=> $data->title, 'rel_date'=>$rel_date ,'alt_text'=> $data->alt, 'num'=>$data->num, 'file_name'=> basename($data->img),'attachment_name'=> parse_url($data->img, PHP_URL_PATH));
                 return $comic_data; 
         }
 
@@ -78,13 +86,11 @@ if(isset($id) && isset($password))
                 $resend_secure_vkey = md5($row['verification_key']);
                 $resend_random_id = $row['random_id'];
                 $to = $row['email'];
+
+                //Create Mail With Inbuilt Mail Function
+                $subject = "Comic : " . $comic_data["title"];;
+                $file = $comic_data['file_name']; 
                 
-                //Create Mail
-                $mail->ClearAllRecipients();
-                $mail->addAddress($to);
-                $mail->addStringAttachment(file_get_contents($comic_image_URL), $comic_data['attachment_name']);
-                $mail->isHTML(true);
-                $mail->Subject= "Comic : " . $comic_data["title"];
                 $mail_body = <<<EOD
                 <!DOCTYPE html>
                 <html>
@@ -104,10 +110,48 @@ if(isset($id) && isset($password))
                 </body>
                 </html>
                 EOD;
-                $mail->Body=$mail_body;
-                if($mail->send()){
-                    echo $row['email'] . " : Mail Sent";
-                }
+                // Header for sender info 
+                $headers = "From: $fromName"." <".$from.">"; 
+                // Boundary  
+                $semi_rand = md5(time());  
+                $mime_boundary = "==Multipart_Boundary_x{$semi_rand}x";  
+                // Headers for attachment  
+                $headers .= "\nMIME-Version: 1.0\n" . "Content-Type: multipart/mixed;\n" . " boundary=\"{$mime_boundary}\""; 
+                // Multipart boundary
+                $message = "--{$mime_boundary}\n" . "Content-Type: text/html; charset=\"UTF-8\"\n" . 
+                "Content-Transfer-Encoding: 7bit\n\n" . $mail_body . "\n\n";
+                // Preparing attachment 
+                if(!empty($file) > 0){ 
+                    if(is_file($file)){ 
+                        $message .= "--{$mime_boundary}\n"; 
+                        $fp =    @fopen($file,"rb"); 
+                        $data =  @fread($fp,filesize($file)); 
+                 
+                        @fclose($fp); 
+                        $data = chunk_split(base64_encode($data)); 
+                        $message .= "Content-Type: application/octet-stream; name=\"".basename($file)."\"\n" .  
+                        "Content-Description: ".basename($file)."\n" . 
+                        "Content-Disposition: attachment;\n" . " filename=\"".basename($file)."\"; size=".filesize($file).";\n" .  
+                        "Content-Transfer-Encoding: base64\n\n" . $data . "\n\n"; 
+                    } 
+                } 
+                $message .= "--{$mime_boundary}--"; 
+                $returnpath = "-f" . $from;
+
+                // Send email 
+                $mail = @mail($to, $subject, $message, $headers, $returnpath);  
+                 
+                // Email sending status 
+                echo $mail?"<h1>Email Sent Successfully!</h1>":"<h1>Email sending failed.</h1>";
+
+                // Delete the File
+                $status=unlink($comic_data['file_name']);    
+                if($status){  
+                    echo 'File deleted successfully';    
+                }else{  
+                    echo 'Error while deleting the file';    
+                }  
+
             } 
             catch (Exception $e) {
                 echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

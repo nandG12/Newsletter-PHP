@@ -45,11 +45,15 @@
 	        	$resend_secure_vkey = md5($resend_data['verification_key']);
 	        	$resend_random_id = $resend_data['random_id'];
 
-				//Create Mail
-		        $mail->ClearAllRecipients();
-		        $mail->addAddress($email);
-		        $mail->isHTML(true);
-		        $mail->Subject= 'Resend Verification Link : Comic World';
+				//Create Mail		        
+		        $to = $email;
+		        $subject= 'Resend Verification Link : Comic World';
+
+		        // Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				$headers .= "From: $fromName"." <".$from.">";
+
         		$mail_body = <<<EOD
 					<!DOCTYPE html>
 					<html>
@@ -90,8 +94,7 @@
 					</body>
 					</html>
 				EOD;
-				$mail->Body=$mail_body;
-		        $mail->send();
+				mail($to,$subject,$mail_body,$headers);
         		//Redirect to the Sign-UP Page with Success Message
         		header('Location: ../retrieve.php');
 	         	exit();
@@ -116,12 +119,16 @@
         		$secure_email = md5($email);
         		$secure_vkey = md5($vkey);
 
-				//Create Mail
-		        $mail->ClearAllRecipients();
-		        $mail->addAddress($email);
-		        $mail->isHTML(true);
-		        $mail->Subject= 'Email Verification : Comic World';
-        		$mail_body = <<<EOD
+				//Create Mail		        
+		        $to = $email;
+		        $subject= 'Resend Verification Link : Comic World';
+
+		        // Always set content-type when sending HTML email
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				$headers .= "From: $fromName"." <".$from.">";
+
+	       		$mail_body = <<<EOD
 					<!DOCTYPE html>
 					<html>
 					<head>
@@ -161,8 +168,7 @@
 					</body>
 					</html>
 				EOD;
-				$mail->Body=$mail_body;
-		        $mail->send();
+				mail($to,$subject,$mail_body,$headers);
         		
         		//Redirect to the Sign-UP Page with Success Message
         		header('Location: ../retrieve.php');

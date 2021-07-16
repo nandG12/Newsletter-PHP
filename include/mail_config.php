@@ -1,4 +1,6 @@
-<?php 
+<?php
+	/**
+	
 	//Import the PHP Mailer Library
 	require dirname(__DIR__, 1).'/lib/phpmailer/PHPMailerAutoload.php';
 
@@ -18,5 +20,10 @@
 	//Enter the E-Mail that you are using
 	$mail->setFrom('xxx@xxx.com');
 	$mail->addReplyTo('xxx@xxx.com');
+	
+	**/
 
+	//When Using the in-built PHP mail() Function
+	$from = 'xxx@xxx.com'; 
+	$fromName = 'Comic World';
 ?>

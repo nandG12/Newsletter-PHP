@@ -21,6 +21,20 @@ To run this Project, We need a below Software or Applications.
    Extract the downloaded Zip into the Lib Folder.
    Rename that Extracted Folder to phpmailer
    ```
+
+1. If you want to use the inbuilt php mail function you need to modify below ini files.
+   1. php.ini (Here is the Example of the gmail SMTP you need to change this according to your SMTP Provider.
+      - SMTP=smtp.gmail.com
+      - smtp_port=587
+      - sendmail_from = xxx@gmail.com
+      - sendmail_path = "Path\to\sendmail-exe\sendmail.exe -t"
+   1. sendmail.ini
+      - smtp_server=smtp.gmail.com
+      - smtp_port=587
+      - smtp_ssl=TLS
+      - auth_username=xxx@gmail.com
+      - auth_password=xxxPasswordOfEmailIDxxx
+      - force_sender=xxx@gmail.com
    
 1. You need to modify the below files.
    1. include/db_connection.php
